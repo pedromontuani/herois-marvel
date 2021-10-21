@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "59224331984",
+    "project_id": "herois-marvel",
+    "storage_bucket": "herois-marvel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59224331984:android:41b395af6fe90848fdf0d5",
+        "android_client_info": {
+          "package_name": "com.heroismarvel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59224331984-etckp861f7767toeggs7orld3jseq3qc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH4EPmCD9997lAvxdlMUakXHcwhKs50L8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59224331984-etckp861f7767toeggs7orld3jseq3qc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

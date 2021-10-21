@@ -5,7 +5,7 @@ import variables from '~/theme/variables';
 
 import styles from './styles';
 
-const Card = ({ title, imageUrl, onPress, favorite, onPressLike }) => {
+const Card = ({ title, imageUrl, onPress, favorite, onPressFavorite }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image
@@ -20,7 +20,10 @@ const Card = ({ title, imageUrl, onPress, favorite, onPressLike }) => {
           </Text>
         </View>
         <View style={styles.iconContainer}>
-          <TouchableOpacity hitSlop={variables.hitSlop} onPress={onPressLike}>
+          <TouchableOpacity
+            hitSlop={variables.hitSlop}
+            onPress={onPressFavorite}
+          >
             <Icon
               name={favorite ? 'star' : 'star-outline'}
               style={styles.favoriteIcon}

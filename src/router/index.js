@@ -3,8 +3,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import EnterprisesScreen from '~/screens/EnterprisesScreen';
+import HomeTabs from './HomeTabs';
 import EnterpriseInfoScreen from '~/screens/EnterpriseInfoScreen';
+import routes from './routes';
 
 const Stack = createStackNavigator();
 
@@ -13,12 +14,12 @@ const Router = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name='Enterprises'
-          component={EnterprisesScreen}
+          name='Home'
+          component={HomeTabs}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name='EnterpriseInfo'
+          name={routes.CHARACTER_INFO}
           component={EnterpriseInfoScreen}
           options={{ headerShown: false }}
         />
