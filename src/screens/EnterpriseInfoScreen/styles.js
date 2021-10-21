@@ -5,7 +5,7 @@ export const gradient = ['rgba(0,0,0,0.6)', 'rgba(0,0,0,0)'];
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   customNavBar: {
     position: 'absolute',
@@ -18,54 +18,54 @@ export default StyleSheet.create({
     zIndex: 100,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between'
   },
   backButtonContainer: { padding: 5 },
-  backButtonIcon: {
+  navIcon: {
     fontSize: 26,
-    color: colors.white,
+    color: colors.white
   },
   contentContainer: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.white
   },
   content: {
-    flex: 1,
     flexDirection: 'column',
-    padding: 20,
+    padding: 20
   },
   title: {
     fontSize: 22,
     fontWeight: 'bold',
 
     paddingBottom: 20,
-    color: colors.primary,
+    color: colors.primary
   },
   detailsContainer: {
     flexDirection: 'row',
     paddingBottom: 20,
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    flexWrap: 'nowrap',
+    flexWrap: 'nowrap'
   },
   detail: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingRight: 35,
+    paddingRight: 35
   },
   detailIcon: {
     fontSize: 22,
-    color: colors.darkGray,
+    color: colors.darkGray
   },
   detailText: {
-    paddingLeft: 5,
+    paddingLeft: 5
   },
   description: {
-    fontSize: 15,
+    fontSize: 15
   },
   image: {
     height: 250,
     borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    borderBottomRightRadius: 20
   },
   footer: {
     height: 60,
@@ -73,16 +73,16 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: colors.lightGray,
-    elevation: 5,
+    elevation: 5
   },
   socialIconContainer: {
-    padding: 10,
+    padding: 10
   },
   socialIcon: {
     fontSize: 26,
-    color: colors.primary,
+    color: colors.primary
   },
   socialIconDisabled: {
-    opacity: 0.6,
-  },
+    opacity: 0.6
+  }
 });
