@@ -15,11 +15,12 @@ import RoundButton from '~/components/RoundButton';
 import colors from '~/theme/colors';
 import styles from './styles';
 
-const SignInScreen = () => {
+const SignInScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailValid, setEmailValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onChangeEmail = text => {
     setEmail(text);
@@ -29,6 +30,12 @@ const SignInScreen = () => {
   const onChangePassword = text => {
     setPassword(text);
     setPasswordValid(true);
+  };
+
+  const onSubmit = () => {};
+
+  const onPressSignUp = () => {
+    navigation.navigate('SignUp');
   };
 
   const validate = () => {
@@ -91,6 +98,17 @@ const SignInScreen = () => {
             ) : (
               <Text style={styles.textFullButton}>LOGIN</Text>
             )}
+          </RoundButton>
+          <RoundButton
+            backgroundColor={colors.transparent}
+            borderColor={colors.transparent}
+            disabled={isLoading}
+            onPress={onPressSignUp}
+          >
+            <Text style={styles.textOutlineButton}>
+              Não possui uma conta?
+              <Text style={{ fontWeight: 'bold' }}> Cadastre-se!</Text>
+            </Text>
           </RoundButton>
         </View>
       </SafeAreaView>
