@@ -13,6 +13,9 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { launchImageLibrary } from 'react-native-image-picker';
 
+import authSelector from '~/store/modules/auth/selectors';
+import { signUp } from '~/store/modules/auth/slice';
+
 import styles from './styles';
 import colors from '../../theme/colors';
 import RoundButton from '../../components/RoundButton';
@@ -25,6 +28,9 @@ const SignUp = props => {
   const [password, setPassword] = useState('');
   const [verifyPassword, setVerifyPassword] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const isLoading = useSelector(authSelector.isLoading);
+  const dispatch = useDispatch();
 
   const imagePickerOptions = {
     mediaType: 'photo',
@@ -40,13 +46,8 @@ const SignUp = props => {
     });
   };
 
-  const signUp = async () => {
-    try {
-      setLoading(true);
-      await createUser({ name, email, password, photo: avatar });
-    } finally {
-      setLoading(false);
-    }
+  const onSignnUp = () => {
+    dispatch(signUp({ name, email, password, photo: avatar }));
   };
 
   return (
@@ -113,9 +114,9 @@ const SignUp = props => {
         <RoundButton
           backgroundColor={colors.white}
           borderColor={'transparent'}
-          onPress={signUp}
+          onPress={onSignnUp}
         >
-          {loading ? (
+          {isLoading ? (
             <ActivityIndicator size={'large'} color={colors.primary} />
           ) : (
             <Text style={styles.textFullButton}>CADASTRE-SE</Text>

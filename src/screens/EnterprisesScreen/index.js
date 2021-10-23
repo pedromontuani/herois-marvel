@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import loadingSelector from '~/store/modules/loader/selectors';
+import loadingSelector from '~/store/modules/loading/selectors';
 
 import MainHeader from '~/components/MainHeader';
 import Card from '~/components/Card';

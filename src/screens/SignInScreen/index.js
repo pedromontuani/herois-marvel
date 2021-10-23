@@ -7,10 +7,11 @@ import {
   Image,
   ActivityIndicator
 } from 'react-native';
-
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 import RoundButton from '~/components/RoundButton';
+
+import authSelector from '~/store/modules/auth/selectors';
+import { login } from '~/store/modules/auth/slice';
 
 import colors from '~/theme/colors';
 import styles from './styles';
@@ -20,7 +21,9 @@ const SignInScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [emailValid, setEmailValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+
+  const isLoading = useSelector(authSelector.isLoading);
+  const dispatch = useDispatch();
 
   const onChangeEmail = text => {
     setEmail(text);
@@ -32,7 +35,9 @@ const SignInScreen = ({ navigation }) => {
     setPasswordValid(true);
   };
 
-  const onSubmit = () => {};
+  const onSubmit = async () => {
+    dispatch(login(email, password));
+  };
 
   const onPressSignUp = () => {
     navigation.navigate('SignUp');

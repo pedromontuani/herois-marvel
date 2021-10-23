@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
-import loadingSelector from '~/store/modules/loader/selectors';
+import loadingSelector from '~/store/modules/loading/selectors';
 import Loading from '~/components/Loading';
 
 import styles, { gradient } from './styles';

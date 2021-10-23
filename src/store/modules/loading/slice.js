@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const authSlice = createSlice({
-  name: 'loader',
+  name: 'loading',
   initialState: {
     visible: false
   },

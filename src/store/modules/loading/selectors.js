@@ -1,5 +1,5 @@
 const selectors = {
-  isVisible: (state) => state.loader.visible,
+  isVisible: state => state.loading.visible
 };
 
 export default selectors;

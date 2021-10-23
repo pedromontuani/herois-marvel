@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import loader from './modules/loader/slice';
+import auth from './modules/auth/slice';
+import loading from './modules/loading/slice';
 
 const reducers = combineReducers({
-  loader
+  auth,
+  loading
 });
 
 export default reducers;

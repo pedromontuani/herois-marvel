@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { API_URL, PUBLIC_KEY, PRIVATE_KEY } from '~/config';
-import { setLoading } from '~/store/modules/loader/slice';
+import { setLoading } from '~/store/modules/loading/slice';
 import { stringMd5 } from 'react-native-quick-md5';
 import store from '~/store';
 
