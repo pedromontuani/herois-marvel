@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import loadingSelector from '~/store/modules/loading/selectors';
 import authSelector from '~/store/modules/auth/selectors';
+import heroesSelector from '~/store/modules/heroes/selectors';
 
 import MainHeader from '~/components/MainHeader';
 import Card from '~/components/Card';
@@ -22,20 +23,24 @@ import colors from '~/theme/colors';
 import routes from '~/router/routes';
 import {
   addFavorite,
-  getFavoritesList,
-  removeFavorite
+  removeFavorite,
+  getFavoritesListObservable
 } from '~/services/favorites';
-import { dispatch } from 'node_modules/rxjs/internal/observable/pairs';
 import { logout } from '~/store/modules/auth/slice';
+import {
+  setHeroes,
+  setHeroesOffset,
+  setFavorites
+} from '~/store/modules/heroes/slice';
 
 const EnterprisesScreen = ({ navigation }) => {
-  const [heroes, setHeroes] = useState([]);
   const [searchTerm, setSearchTerm] = useState(undefined);
   const [lastOffset, setLastOffset] = useState(0);
-  const [favorites, setFavorites] = useState([]);
   const perPage = 20;
   const loading = useSelector(loadingSelector.isVisible);
   const user = useSelector(authSelector.getUser);
+  const heroes = useSelector(heroesSelector.allHeroes);
+  const favorites = useSelector(heroesSelector.favorites);
   const scrollY = new Animated.Value(0);
   const dispatch = useDispatch();
 
@@ -56,9 +61,9 @@ const EnterprisesScreen = ({ navigation }) => {
         id: res.id.toString()
       }));
       if (offset) {
-        setHeroes([...heroes, ...data.data.results]);
+        dispatch(setHeroesOffset(data.data.results));
       } else {
-        setHeroes(data.data.results);
+        dispatch(setHeroes(data.data.results));
       }
       setLastOffset(data.data.offset);
     });
@@ -71,20 +76,18 @@ const EnterprisesScreen = ({ navigation }) => {
   const getImageUrl = character =>
     `${character.thumbnail.path}/landscape_xlarge.${character.thumbnail.extension}`;
 
-  const isFavorite = ({ id }) => favorites.includes(id.toString());
+  const isFavorite = ({ id }) => !!favorites.find(char => char.id === id);
 
   const onPressFavorite = async character => {
     if (isFavorite(character)) {
-      await removeFavorite({ uid: 'teste', characterId: character.id });
-      setFavoritesList(favorites.filter(id => id !== character.id));
+      await removeFavorite({ uid: user.uid, characterId: character.id });
     } else {
       await addFavorite({
-        uid: 'teste',
+        uid: user.uid,
         name: character.name,
         characterId: character.id,
         imageUrl: getImageUrl(character)
       });
-      setFavorites([...favorites, character.id]);
     }
   };
 
@@ -108,10 +111,20 @@ const EnterprisesScreen = ({ navigation }) => {
 
   useEffect(() => {
     getHeroes();
-    getFavoritesList('teste').then(data => {
-      setFavorites(data.map(character => character.id));
-    });
-  }, []);
+    const unsubscribe = getFavoritesListObservable(user?.uid).onSnapshot(
+      docs => {
+        const list = [];
+        docs.forEach(doc => {
+          const { name, imageUrl } = doc.data();
+          list.push({ id: doc.id, name, imageUrl });
+        });
+        dispatch(setFavorites(list));
+      }
+    );
+    return () => {
+      unsubscribe();
+    };
+  }, [user]);
 
   return (
     <SafeAreaView style={styles.container}>

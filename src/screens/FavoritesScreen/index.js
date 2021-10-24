@@ -12,27 +12,32 @@ import loadingSelector from '~/store/modules/loading/selectors';
 
 import Card from '~/components/Card';
 import NoData from '~/components/NoData';
+import { setFavorites } from '~/store/modules/heroes/slice';
+
+import heroesSelector from '~/store/modules/heroes/selectors';
+import authSelector from '~/store/modules/auth/selectors';
 
 import { findHeroesByQuery } from '~/api/heroes';
 import styles from './styles';
 import colors from '~/theme/colors';
 import routes from '~/router/routes';
 import {
-  getFavoritesList,
   getFavoritesListObservable,
   removeFavorite
 } from '~/services/favorites';
 import { setLoading } from '~/store/modules/loading/slice';
 
 const EnterprisesScreen = ({ navigation }) => {
-  const [favorites, setFavorites] = useState([]);
+  const user = useSelector(authSelector.getUser);
+  const favorites = useSelector(heroesSelector.favorites);
+  const dispatch = useDispatch();
 
   const onPressCard = character => {
     navigation.navigate(routes.CHARACTER_INFO, { characterId: character.id });
   };
 
   const onPressFavorite = async ({ id }) => {
-    await removeFavorite({ uid: 'teste', characterId: id });
+    await removeFavorite({ uid: user?.uid, characterId: id });
   };
 
   const renderItem = ({ item }) => (
@@ -48,19 +53,21 @@ const EnterprisesScreen = ({ navigation }) => {
   const showNoData = () => <NoData />;
 
   useEffect(() => {
-    const unsubscribe = getFavoritesListObservable('teste').onSnapshot(docs => {
-      const list = [];
-      docs.forEach(doc => {
-        const { name, imageUrl } = doc.data();
-        list.push({ id: doc.id, name, imageUrl });
-      });
-      setFavorites(list);
-    });
+    const unsubscribe = getFavoritesListObservable(user?.uid).onSnapshot(
+      docs => {
+        const list = [];
+        docs.forEach(doc => {
+          const { name, imageUrl } = doc.data();
+          list.push({ id: doc.id, name, imageUrl });
+        });
+        dispatch(setFavorites(list));
+      }
+    );
 
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [user]);
 
   return (
     <SafeAreaView style={styles.container}>

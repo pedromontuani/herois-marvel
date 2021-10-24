@@ -1,23 +1,11 @@
 import firestore from '@react-native-firebase/firestore';
 
-export const getFavoritesList = async uid => {
-  const collection = await firestore()
+export const getFavoritesListObservable = uid => {
+  return firestore()
     .collection('users')
     .doc(uid)
     .collection('favorites')
-    .get();
-
-  const favorites = [];
-  collection.forEach(comic => {
-    const { name, imageUrl } = comic.data();
-    favorites.push({ id: comic.id, name, imageUrl });
-  });
-
-  return favorites;
-};
-
-export const getFavoritesListObservable = uid => {
-  return firestore().collection('users').doc(uid).collection('favorites');
+    .orderBy('name', 'asc');
 };
 
 export const addFavorite = async ({ uid, characterId, name, imageUrl }) => {
