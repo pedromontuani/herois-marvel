@@ -2,5 +2,6 @@ import storage from '@react-native-firebase/storage';
 
 export const uploadUserImage = async ({ uid, filePath, metadata }) => {
   const ref = storage().ref(`users/${uid}/photo.jpg`);
-  return ref.putFile(filePath, metadata);
+  await ref.putFile(filePath, metadata);
+  return ref.getDownloadURL();
 };

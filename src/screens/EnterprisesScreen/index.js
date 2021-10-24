@@ -9,6 +9,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import loadingSelector from '~/store/modules/loading/selectors';
+import authSelector from '~/store/modules/auth/selectors';
 
 import MainHeader from '~/components/MainHeader';
 import Card from '~/components/Card';
@@ -24,6 +25,8 @@ import {
   getFavoritesList,
   removeFavorite
 } from '~/services/favorites';
+import { dispatch } from 'node_modules/rxjs/internal/observable/pairs';
+import { logout } from '~/store/modules/auth/slice';
 
 const EnterprisesScreen = ({ navigation }) => {
   const [heroes, setHeroes] = useState([]);
@@ -32,7 +35,9 @@ const EnterprisesScreen = ({ navigation }) => {
   const [favorites, setFavorites] = useState([]);
   const perPage = 20;
   const loading = useSelector(loadingSelector.isVisible);
+  const user = useSelector(authSelector.getUser);
   const scrollY = new Animated.Value(0);
+  const dispatch = useDispatch();
 
   const headerHeight = scrollY.interpolate({
     inputRange: [0, 300],
@@ -83,6 +88,14 @@ const EnterprisesScreen = ({ navigation }) => {
     }
   };
 
+  const signOut = () => {
+    dispatch(logout());
+  };
+
+  const showNoData = () => !loading && <NoData />;
+
+  const showIndicator = () => <ActivityIndicator />;
+
   const renderItem = ({ item }) => (
     <Card
       imageUrl={getImageUrl(item)}
@@ -92,10 +105,6 @@ const EnterprisesScreen = ({ navigation }) => {
       onPressFavorite={() => onPressFavorite(item)}
     />
   );
-
-  const showNoData = () => !loading && <NoData />;
-
-  const showIndicator = () => <ActivityIndicator />;
 
   useEffect(() => {
     getHeroes();
@@ -108,12 +117,12 @@ const EnterprisesScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <Animated.View style={styles.container}>
         <MainHeader
-          // user={user}
+          user={user}
           headerHeight={headerHeight}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
           onSubmitSearch={getHeroes}
-          // onSignOut={signOut}
+          onSignOut={signOut}
         />
         <Animated.FlatList
           refreshControl={

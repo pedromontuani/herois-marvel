@@ -10,6 +10,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import RoundButton from '~/components/RoundButton';
 
+import { useSelector, useDispatch } from 'react-redux';
 import authSelector from '~/store/modules/auth/selectors';
 import { login } from '~/store/modules/auth/slice';
 

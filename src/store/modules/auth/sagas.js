@@ -8,9 +8,16 @@ function* offlineLogin() {
   yield put(setLoading(true));
   try {
     const user = yield call(isAuthenticated);
-    yield put(loginSuccess({ user }));
+    if (!!user) {
+      yield put(loginSuccess({ user }));
+    }
+  } catch (e) {
+    yield call(
+      Toast.show,
+      'Ocorreu um erro. Por favor, verifique sua conexão.'
+    );
   } finally {
-    yield put(setLoading(true));
+    yield put(setLoading(false));
   }
 }
 

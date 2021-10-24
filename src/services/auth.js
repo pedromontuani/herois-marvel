@@ -3,21 +3,22 @@ import { uploadUserImage } from './storage';
 
 export const createUser = async ({ name, email, password, photo }) => {
   const { user } = await auth().createUserWithEmailAndPassword(email, password);
-  const profile = {
-    displayName: name
+  let profile = {
+    displayName: name,
+    photoURL: null
   };
   if (photo) {
-    const fileObject = await uploadUserImage({
+    const downloadURL = await uploadUserImage({
       uid: user.uid,
       filePath: photo.uri,
       metadata: {
         contentType: photo.type
       }
     });
-    profile.photoURL = fileObject.downloadURL;
+    profile.photoURL = downloadURL;
   }
   await auth().currentUser.updateProfile(profile);
-  return firebase.auth().currentUser;
+  return auth().currentUser;
 };
 
 export const signIn = async ({ email, password }) => {
@@ -35,7 +36,7 @@ export const isAuthenticated = async () => {
         if (user) {
           resolve(user);
         } else {
-          reject();
+          resolve(false);
         }
       },
       error => reject(error)

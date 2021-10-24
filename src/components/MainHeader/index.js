@@ -23,27 +23,22 @@ const MainHeader = ({
   onSubmitSearch,
   onSignOut
 }) => {
-  // const getUserPhoto = () =>
-  //   user?.investor?.photo
-  //     ? { uri: `${BASE_URL}/${user.investor.photo}` }
-  //     : require('~/assets/no-photo.png');
-
-  // const getPlaceholder = () =>
-  //   filterLabel ? `Search in ${filterLabel} enterprises...` : 'Search...';
+  const getUserPhoto = () =>
+    user?.photoURL ? { uri: user.photoURL } : require('~/assets/no-photo.png');
 
   return (
     <Animated.View style={[{ height: headerHeight }, styles.container]}>
       <Animated.View style={styles.userInfoContainer}>
         <Animated.View style={styles.userInfoContent}>
-          {/* <Image
+          <Image
             source={getUserPhoto()}
             style={styles.userImage}
-            resizeMode="cover"
-          /> */}
+            resizeMode='cover'
+          />
           <Animated.View style={styles.userNameContainer}>
-            {/* <Text numberOfLines={1} style={styles.userNameText}>
-              {user?.investor?.investor_name}
-            </Text> */}
+            <Text numberOfLines={1} style={styles.userNameText}>
+              {user?.displayName}
+            </Text>
           </Animated.View>
         </Animated.View>
         <View style={styles.iconContainer}>

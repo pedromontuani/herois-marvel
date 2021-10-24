@@ -6,6 +6,9 @@ import { Provider } from 'react-redux';
 import NetInfo from '@react-native-community/netinfo';
 import NoInternet from '~/components/NoInternet';
 
+import { useDispatch } from 'react-redux';
+import { offlineLogin } from './store/modules/auth/slice';
+
 import colors from './theme/colors';
 import store from './store';
 import Router from './router';
@@ -14,6 +17,8 @@ const App = () => {
   const [isConnected, setIsConnected] = useState(true);
 
   useEffect(() => {
+    store.dispatch(offlineLogin());
+
     const unsubscribe = NetInfo.addEventListener(({ isInternetReachable }) => {
       setIsConnected(isInternetReachable);
     });

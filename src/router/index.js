@@ -21,7 +21,7 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {isAuthenticated ? (
+        {!isAuthenticated ? (
           <Stack.Group>
             <Stack.Screen
               name='SignIn'

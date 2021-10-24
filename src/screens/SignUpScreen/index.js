@@ -13,6 +13,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { launchImageLibrary } from 'react-native-image-picker';
 
+import { useSelector, useDispatch } from 'react-redux';
 import authSelector from '~/store/modules/auth/selectors';
 import { signUp } from '~/store/modules/auth/slice';
 
