@@ -14,26 +14,13 @@ const favSlice = createSlice({
       state.allHeroes = [...state.allHeroes, ...payload];
     },
     setFavorites(state, { payload }) {
-      console.log(payload);
       state.favorites = payload;
-    },
-    addFavorite(state, { payload }) {
-      state.favorites = [...state.favorites, payload];
-    },
-    removeFavorite(state, { payload }) {
-      state.favorites = state.favorites.filter(fav => fav.id !== payload.id);
     }
   }
 });
 
 const { actions, reducer } = favSlice;
 
-export const {
-  setHeroes,
-  setHeroesOffset,
-  setFavorites,
-  addFavorite,
-  removeFavorite
-} = actions;
+export const { setHeroes, setHeroesOffset, setFavorites } = actions;
 
 export default reducer;

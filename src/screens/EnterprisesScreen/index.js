@@ -4,7 +4,8 @@ import {
   Animated,
   Easing,
   RefreshControl,
-  ActivityIndicator
+  ActivityIndicator,
+  View
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -52,6 +53,7 @@ const EnterprisesScreen = ({ navigation }) => {
   });
 
   const getHeroes = (offset = 0) => {
+    console.log('chamou', offset);
     findHeroesByQuery({
       name: searchTerm,
       offset
@@ -97,7 +99,15 @@ const EnterprisesScreen = ({ navigation }) => {
 
   const showNoData = () => !loading && <NoData />;
 
-  const showIndicator = () => <ActivityIndicator />;
+  const showIndicator = () => (
+    <View style={{ paddingVertical: 20 }}>
+      <ActivityIndicator
+        color={colors.primary}
+        size={'large'}
+        animating={loading && heroes.length > 0}
+      />
+    </View>
+  );
 
   const renderItem = ({ item }) => (
     <Card
@@ -126,6 +136,10 @@ const EnterprisesScreen = ({ navigation }) => {
     };
   }, [user]);
 
+  useEffect(() => {
+    console.log('heroes', heroes.length);
+  }, [heroes]);
+
   return (
     <SafeAreaView style={styles.container}>
       <Animated.View style={styles.container}>
@@ -141,7 +155,7 @@ const EnterprisesScreen = ({ navigation }) => {
           refreshControl={
             <RefreshControl
               colors={[colors.primary]}
-              refreshing={loading}
+              refreshing={loading && (scrollY < 20 || !heroes.length)}
               onRefresh={getHeroes}
             />
           }
@@ -149,10 +163,10 @@ const EnterprisesScreen = ({ navigation }) => {
           contentContainerStyle={styles.flatListContent}
           data={heroes}
           renderItem={renderItem}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={item => item.id}
           scrollEventThrottle={1}
           onEndReached={() => getHeroes(lastOffset + perPage)}
-          onEndReachedThreshold={0.1}
+          onEndReachedThreshold={1}
           ListEmptyComponent={showNoData}
           ListFooterComponent={showIndicator}
           onScroll={Animated.event(
