@@ -1,8 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import EnterprisesScreen from '~/screens/EnterprisesScreen';
-import FavoritesScreen from '~/screens/FavoritesScreen';
+import HeroesScreen from '~/screens/Heroes';
+import FavoritesScreen from '~/screens/Favorites';
 import colors from '~/theme/colors';
 import routes from './routes';
 
@@ -24,7 +24,7 @@ const HomeTabs = () => {
     >
       <Tab.Screen
         name={routes.CHARACTERS}
-        component={EnterprisesScreen}
+        component={HeroesScreen}
         options={{ headerShown: false }}
         initialParams={{ icon: 'home' }}
       />

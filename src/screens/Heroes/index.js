@@ -9,9 +9,16 @@ import {
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
 import loadingSelector from '~/store/modules/loading/selectors';
 import authSelector from '~/store/modules/auth/selectors';
 import heroesSelector from '~/store/modules/heroes/selectors';
+import { logout } from '~/store/modules/auth/slice';
+import {
+  setHeroes,
+  setHeroesOffset,
+  setFavorites
+} from '~/store/modules/heroes/slice';
 
 import MainHeader from '~/components/MainHeader';
 import Card from '~/components/Card';
@@ -27,12 +34,6 @@ import {
   removeFavorite,
   getFavoritesListObservable
 } from '~/services/favorites';
-import { logout } from '~/store/modules/auth/slice';
-import {
-  setHeroes,
-  setHeroesOffset,
-  setFavorites
-} from '~/store/modules/heroes/slice';
 
 const EnterprisesScreen = ({ navigation }) => {
   const [searchTerm, setSearchTerm] = useState(undefined);

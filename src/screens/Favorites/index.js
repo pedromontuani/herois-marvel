@@ -1,27 +1,23 @@
 /* eslint-disable camelcase */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { View, FlatList, Share } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import loadingSelector from '~/store/modules/loading/selectors';
-import FAB from '~/components/FloatingActionButton';
 
+import FAB from '~/components/FloatingActionButton';
 import Card from '~/components/Card';
 import NoData from '~/components/NoData';
-import { setFavorites } from '~/store/modules/heroes/slice';
 
+import { setFavorites } from '~/store/modules/heroes/slice';
 import heroesSelector from '~/store/modules/heroes/selectors';
 import authSelector from '~/store/modules/auth/selectors';
 
-import { findHeroesByQuery } from '~/api/heroes';
 import styles from './styles';
-import colors from '~/theme/colors';
 import routes from '~/router/routes';
 import {
   getFavoritesListObservable,
   removeFavorite
 } from '~/services/favorites';
-import { setLoading } from '~/store/modules/loading/slice';
 
 const EnterprisesScreen = ({ navigation }) => {
   const user = useSelector(authSelector.getUser);

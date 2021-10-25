@@ -4,9 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeTabs from './HomeTabs';
-import EnterpriseInfoScreen from '~/screens/EnterpriseInfoScreen';
-import SignInScreen from '~/screens/SignInScreen';
-import SignUpScreen from '~/screens/SignUpScreen';
+import HeroInfoScreen from '~/screens/HeroInfo';
+import SignInScreen from '~/screens/SignIn';
+import SignUpScreen from '~/screens/SignUp';
 
 import authSelector from '~/store/modules/auth/selectors';
 import { useSelector } from 'react-redux';
@@ -24,12 +24,12 @@ const Router = () => {
         {!isAuthenticated ? (
           <Stack.Group>
             <Stack.Screen
-              name='SignIn'
+              name={routes.SIGN_UP}
               component={SignInScreen}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name='SignUp'
+              name={routes.SIGN_UP}
               component={SignUpScreen}
               options={{ headerShown: false }}
             />
@@ -37,13 +37,13 @@ const Router = () => {
         ) : (
           <Stack.Group>
             <Stack.Screen
-              name='Home'
+              name={routes.HOME}
               component={HomeTabs}
               options={{ headerShown: false }}
             />
             <Stack.Screen
               name={routes.CHARACTER_INFO}
-              component={EnterpriseInfoScreen}
+              component={HeroInfoScreen}
               options={{ headerShown: false }}
             />
           </Stack.Group>

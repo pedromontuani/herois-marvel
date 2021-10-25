@@ -12,22 +12,23 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
+
 import loadingSelector from '~/store/modules/loading/selectors';
 import heroesSelector from '~/store/modules/heroes/selectors';
 import authSelector from '~/store/modules/auth/selectors';
-import Loading from '~/components/Loading';
-
-import { addFavorite, removeFavorite } from '~/services/favorites';
-
 import {
   addFavorite as sAddFavorite,
   removeFavorite as sRemoveFavorite
 } from '~/store/modules/heroes/slice';
 
+import Loading from '~/components/Loading';
+
+import { addFavorite, removeFavorite } from '~/services/favorites';
+
 import styles, { gradient } from './styles';
+import variables from '~/theme/variables';
 
 import { getById } from '~/api/heroes';
-import variables from '~/theme/variables';
 import { findByCharacterId } from '~/api/comics';
 
 const EnterpriseInfoScreen = ({ navigation, route }) => {

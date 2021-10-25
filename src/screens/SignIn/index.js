@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Text,
   View,
@@ -19,6 +19,7 @@ import validation from './validation';
 
 import colors from '~/theme/colors';
 import styles from './styles';
+import routes from '~/router/routes';
 
 const SignInScreen = ({ navigation }) => {
   const isLoading = useSelector(authSelector.isLoading);
@@ -29,7 +30,7 @@ const SignInScreen = ({ navigation }) => {
   };
 
   const onPressSignUp = () => {
-    navigation.navigate('SignUp');
+    navigation.navigate(routes.SIGN_UP);
   };
 
   const {

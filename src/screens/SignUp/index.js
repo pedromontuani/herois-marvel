@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import {
-  Alert,
   Text,
   View,
   TextInput,
   ImageBackground,
   Image,
   TouchableOpacity,
-  KeyboardAvoidingView,
   ActivityIndicator
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -20,11 +18,11 @@ import { signUp } from '~/store/modules/auth/slice';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import RoundButton from '~/components/RoundButton';
+
 import styles from './styles';
-import colors from '../../theme/colors';
-import RoundButton from '../../components/RoundButton';
+import colors from '~/theme/colors';
 import validation from './validation';
-import { createUser } from '~/services/auth';
 
 const SignUp = props => {
   const [avatar, setAvatar] = useState(undefined);
