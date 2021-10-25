@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const favSlice = createSlice({
+const confSlice = createSlice({
   name: 'config',
   initialState: {
     API_PRIVATE_KEY: null,
@@ -15,7 +15,7 @@ const favSlice = createSlice({
   }
 });
 
-const { actions, reducer } = favSlice;
+const { actions, reducer } = confSlice;
 
 export const { setKeys } = actions;
 

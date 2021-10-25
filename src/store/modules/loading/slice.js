@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const authSlice = createSlice({
+const loadingSlice = createSlice({
   name: 'loading',
   initialState: {
     visible: false
@@ -12,7 +12,7 @@ const authSlice = createSlice({
   }
 });
 
-const { actions, reducer } = authSlice;
+const { actions, reducer } = loadingSlice;
 
 export const { setLoading } = actions;
 

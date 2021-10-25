@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const favSlice = createSlice({
+const heroesSlice = createSlice({
   name: 'heroes',
   initialState: {
     allHeroes: [],
@@ -25,7 +25,7 @@ const favSlice = createSlice({
   }
 });
 
-const { actions, reducer } = favSlice;
+const { actions, reducer } = heroesSlice;
 
 export const {
   setHeroes,
