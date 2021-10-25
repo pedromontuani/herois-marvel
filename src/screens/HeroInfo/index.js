@@ -201,21 +201,23 @@ const HeroInfoScreen = ({ navigation, route }) => {
             )}
           </View>
         </ScrollView>
+        {urls?.length > 0 && (
+          <SafeAreaView edges={['bottom']} style={styles.safeAreaFooter}>
+            <View style={styles.footer}>
+              {urls.map(url => (
+                <TouchableOpacity
+                  key={url.type}
+                  hitSlop={variables.hitSlop}
+                  onPress={() => openUrl(url)}
+                  style={styles.socialIconContainer}
+                >
+                  <Icon style={styles.socialIcon} name={getUrlIcon(url)} />
+                </TouchableOpacity>
+              ))}
+            </View>
+          </SafeAreaView>
+        )}
       </View>
-      {urls?.length > 0 && (
-        <View style={styles.footer}>
-          {urls.map(url => (
-            <TouchableOpacity
-              key={url.type}
-              hitSlop={variables.hitSlop}
-              onPress={() => openUrl(url)}
-              style={styles.socialIconContainer}
-            >
-              <Icon style={styles.socialIcon} name={getUrlIcon(url)} />
-            </TouchableOpacity>
-          ))}
-        </View>
-      )}
     </SafeAreaView>
   );
 };
