@@ -13,6 +13,7 @@
 		15F01D0447B9B3C6FB6AAAD7 /* libPods-AppEmpresas.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D451D2101E14B1E7CFB06F37 /* libPods-AppEmpresas.a */; };
 		3DC43CD2A083DF96A9306573 /* libPods-AppEmpresas-AppEmpresasTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB70F629DD79CF57F1AB2E43 /* libPods-AppEmpresas-AppEmpresasTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		EB874E8E2726535400A43E63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB874E8D2726535400A43E63 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,10 +27,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* AppEmpresasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppEmpresasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* HeroisMarvelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeroisMarvelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* AppEmpresasTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppEmpresasTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* AppEmpresas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppEmpresas.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* HeroisMarvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeroisMarvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = AppEmpresas/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = AppEmpresas/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AppEmpresas/Images.xcassets; sourceTree = "<group>"; };
@@ -44,6 +45,7 @@
 		D451D2101E14B1E7CFB06F37 /* libPods-AppEmpresas.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppEmpresas.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB3F337927034D660068AE2F /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		EB3F351A270351340068AE2F /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		EB874E8D2726535400A43E63 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				EB874E8D2726535400A43E63 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* AppEmpresas */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* AppEmpresasTests */,
@@ -141,8 +144,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* AppEmpresas.app */,
-				00E356EE1AD99517003FC87E /* AppEmpresasTests.xctest */,
+				13B07F961A680F5B00A75B9A /* HeroisMarvel.app */,
+				00E356EE1AD99517003FC87E /* HeroisMarvelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,9 +173,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* AppEmpresasTests */ = {
+		00E356ED1AD99517003FC87E /* HeroisMarvelTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "AppEmpresasTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "HeroisMarvelTests" */;
 			buildPhases = (
 				CE1CC32A6ADC0E3FA805D579 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -186,14 +189,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = AppEmpresasTests;
+			name = HeroisMarvelTests;
 			productName = AppEmpresasTests;
-			productReference = 00E356EE1AD99517003FC87E /* AppEmpresasTests.xctest */;
+			productReference = 00E356EE1AD99517003FC87E /* HeroisMarvelTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* AppEmpresas */ = {
+		13B07F861A680F5B00A75B9A /* HeroisMarvel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "AppEmpresas" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "HeroisMarvel" */;
 			buildPhases = (
 				01D1E8AE41004485DC7BB34E /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -209,9 +212,9 @@
 			);
 			dependencies = (
 			);
-			name = AppEmpresas;
+			name = HeroisMarvel;
 			productName = AppEmpresas;
-			productReference = 13B07F961A680F5B00A75B9A /* AppEmpresas.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* HeroisMarvel.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -244,8 +247,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* AppEmpresas */,
-				00E356ED1AD99517003FC87E /* AppEmpresasTests */,
+				13B07F861A680F5B00A75B9A /* HeroisMarvel */,
+				00E356ED1AD99517003FC87E /* HeroisMarvelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				EB874E8E2726535400A43E63 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,7 +456,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* AppEmpresas */;
+			target = 13B07F861A680F5B00A75B9A /* HeroisMarvel */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -481,7 +485,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppEmpresas.app/AppEmpresas";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeroisMarvel.app/HeroisMarvel";
 			};
 			name = Debug;
 		};
@@ -505,7 +509,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppEmpresas.app/AppEmpresas";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeroisMarvel.app/HeroisMarvel";
 			};
 			name = Release;
 		};
@@ -528,7 +532,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.pedromontuani.heroismarvel;
-				PRODUCT_NAME = AppEmpresas;
+				PRODUCT_NAME = HeroisMarvel;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -553,7 +557,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.pedromontuani.heroismarvel;
-				PRODUCT_NAME = AppEmpresas;
+				PRODUCT_NAME = HeroisMarvel;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -685,7 +689,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "AppEmpresasTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "HeroisMarvelTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -694,7 +698,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "AppEmpresas" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "HeroisMarvel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,

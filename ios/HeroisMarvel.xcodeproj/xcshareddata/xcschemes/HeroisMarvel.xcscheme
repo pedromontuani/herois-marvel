@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "AppEmpresas.app"
-               BlueprintName = "AppEmpresas"
-               ReferencedContainer = "container:AppEmpresas.xcodeproj">
+               BlueprintName = "HeroisMarvel"
+               ReferencedContainer = "container:HeroisMarvel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "AppEmpresasTests.xctest"
-               BlueprintName = "AppEmpresasTests"
-               ReferencedContainer = "container:AppEmpresas.xcodeproj">
+               BuildableName = "HeroisMarvelTests.xctest"
+               BlueprintName = "HeroisMarvelTests"
+               ReferencedContainer = "container:HeroisMarvel.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -56,8 +56,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "AppEmpresas.app"
-            BlueprintName = "AppEmpresas"
-            ReferencedContainer = "container:AppEmpresas.xcodeproj">
+            BlueprintName = "HeroisMarvel"
+            ReferencedContainer = "container:HeroisMarvel.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -73,8 +73,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "AppEmpresas.app"
-            BlueprintName = "AppEmpresas"
-            ReferencedContainer = "container:AppEmpresas.xcodeproj">
+            BlueprintName = "HeroisMarvel"
+            ReferencedContainer = "container:HeroisMarvel.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>59224331984-h8ej4qmskgiagldkkk1r7rbhhnjfugfe.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.59224331984-h8ej4qmskgiagldkkk1r7rbhhnjfugfe</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCgWpF5eqndvu0Dr1lOgo12qhy4Iv8LnZU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>59224331984</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.pedromontuani.heroismarvel</string>
+	<key>PROJECT_ID</key>
+	<string>herois-marvel</string>
+	<key>STORAGE_BUCKET</key>
+	<string>herois-marvel.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:59224331984:ios:a312c59c1b0d5f36fdf0d5</string>
+</dict>
+</plist>
