@@ -83,8 +83,10 @@ const EnterprisesScreen = ({ navigation }) => {
     navigation.navigate(routes.CHARACTER_INFO, { characterId: character.id });
   };
 
-  const getImageUrl = character =>
-    `${character.thumbnail.path}/landscape_xlarge.${character.thumbnail.extension}`;
+  const getImageUrl = character => {
+    const path = character.thumbnail.path.replace('http://', 'https://');
+    return `${path}/landscape_xlarge.${character.thumbnail.extension}`;
+  };
 
   const isFavorite = ({ id }) => !!favorites.find(char => char.id === id);
 

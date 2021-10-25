@@ -42,8 +42,10 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
   const user = useSelector(authSelector.getUser);
   const dispatch = useDispatch();
 
-  const getCharacterPhoto = () =>
-    `${characterData?.thumbnail?.path}/landscape_amazing.${characterData?.thumbnail?.extension}`;
+  const getCharacterPhoto = () => {
+    const path = characterData?.thumbnail?.path.replace('http://', 'https://');
+    return `${path}/landscape_amazing.${characterData?.thumbnail?.extension}`;
+  };
 
   const onPressLike = async () => {
     if (isFavorite()) {

@@ -53,7 +53,7 @@ const SignInScreen = ({ navigation }) => {
         <View style={styles.logoHolder}>
           <Image
             style={styles.firebaseLogo}
-            source={require('~/assets/logo_ioasys.png')}
+            source={require('~/assets/firebase-logo/firebase.png')}
             resizeMode='contain'
           />
         </View>
