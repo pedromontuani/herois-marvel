@@ -17,9 +17,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import authSelector from '~/store/modules/auth/selectors';
 import { signUp } from '~/store/modules/auth/slice';
 
+import { Controller, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+
 import styles from './styles';
 import colors from '../../theme/colors';
 import RoundButton from '../../components/RoundButton';
+import validation from './validation';
 import { createUser } from '~/services/auth';
 
 const SignUp = props => {
@@ -47,9 +51,19 @@ const SignUp = props => {
     });
   };
 
-  const onSignnUp = () => {
+  const onSignUp = () => {
     dispatch(signUp({ name, email, password, photo: avatar }));
   };
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(validation),
+    mode: 'onSubmit',
+    reValidateMode: 'onChange'
+  });
 
   return (
     <ImageBackground
@@ -71,51 +85,99 @@ const SignUp = props => {
       </TouchableOpacity>
 
       <View style={styles.inputsHolder}>
-        <TextInput
-          onChangeText={text => setName(text)}
-          style={styles.textInput}
-          underlineColorAndroid={colors.white}
-          placeholderTextColor={colors.white}
-          placeholder={'Nome'}
-          autoCompleteType={'name'}
-          textContentType={'name'}
-          autoCapitalize={'words'}
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={[styles.textInput, errors.name && styles.invalidTextInput]}
+              underlineColorAndroid={'transparent'}
+              placeholderTextColor={!errors.name ? colors.white : colors.error}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              placeholder='Nome'
+              autoCapitalize='words'
+            />
+          )}
+          name='name'
+          defaultValue=''
         />
-        <TextInput
-          onChangeText={text => setEmail(text)}
-          style={styles.textInput}
-          underlineColorAndroid={colors.white}
-          placeholderTextColor={colors.white}
-          placeholder={'Email'}
-          autoCompleteType={'email'}
-          keyboardType={'email-address'}
-          textContentType={'emailAddress'}
-          autoCapitalize={'none'}
+
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={[
+                styles.textInput,
+                errors.email && styles.invalidTextInput
+              ]}
+              underlineColorAndroid={'transparent'}
+              placeholderTextColor={!errors.email ? colors.white : colors.error}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              placeholder='Email'
+              autoCompleteType='email'
+              keyboardType='email-address'
+              textContentType='emailAddress'
+              autoCapitalize='none'
+            />
+          )}
+          name='email'
+          defaultValue=''
         />
-        <TextInput
-          onChangeText={text => setPassword(text)}
-          style={styles.textInput}
-          underlineColorAndroid={colors.white}
-          placeholderTextColor={colors.white}
-          placeholder={'Senha'}
-          textContentType={'password'}
-          secureTextEntry={true}
+
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={[
+                styles.textInput,
+                errors.password && styles.invalidTextInput
+              ]}
+              underlineColorAndroid={'transparent'}
+              placeholderTextColor={
+                !errors.password ? colors.white : colors.error
+              }
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              placeholder='Senha'
+              secureTextEntry
+            />
+          )}
+          name='password'
+          defaultValue=''
         />
-        <TextInput
-          onChangeText={text => setVerifyPassword(text)}
-          style={styles.textInput}
-          underlineColorAndroid={colors.white}
-          placeholderTextColor={colors.white}
-          placeholder={'Repetir senha'}
-          textContentType={'password'}
-          secureTextEntry={true}
+
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={[
+                styles.textInput,
+                errors.confirmPassword && styles.invalidTextInput
+              ]}
+              underlineColorAndroid={'transparent'}
+              placeholderTextColor={
+                !errors.confirmPassword ? colors.white : colors.error
+              }
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              placeholder='Confirmar senha'
+              secureTextEntry
+            />
+          )}
+          name='confirmPassword'
+          defaultValue=''
         />
       </View>
       <View style={styles.buttonsHolder}>
         <RoundButton
           backgroundColor={colors.white}
           borderColor={'transparent'}
-          onPress={onSignnUp}
+          onPress={handleSubmit(onSignUp)}
         >
           {isLoading ? (
             <ActivityIndicator size={'large'} color={colors.primary} />

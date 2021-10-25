@@ -29,11 +29,11 @@ export default StyleSheet.create({
     width: 180,
     borderRadius: 90,
     borderWidth: 6,
-    borderColor: '#FFF'
+    borderColor: colors.white
   },
   avatarSelection: {
     fontSize: 26,
-    color: '#FFF',
+    color: colors.white,
     alignSelf: 'flex-end',
     marginTop: -20
   },
@@ -47,7 +47,12 @@ export default StyleSheet.create({
   },
   textInput: {
     width: '100%',
-    color: '#FFFFFF'
+    color: colors.white,
+    borderBottomColor: colors.white,
+    borderBottomWidth: 1
+  },
+  invalidTextInput: {
+    borderBottomColor: colors.error
   },
   buttonsHolder: {
     flex: 0.2,
@@ -60,7 +65,7 @@ export default StyleSheet.create({
     color: colors.primary
   },
   textOutlineButton: {
-    color: '#FFFFFF'
+    color: colors.white
   },
   socialIcon: {
     fontSize: 22

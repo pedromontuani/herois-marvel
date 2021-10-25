@@ -9,32 +9,20 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import RoundButton from '~/components/RoundButton';
+import { Controller, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import { useSelector, useDispatch } from 'react-redux';
 import authSelector from '~/store/modules/auth/selectors';
 import { login } from '~/store/modules/auth/slice';
+import validation from './validation';
 
 import colors from '~/theme/colors';
 import styles from './styles';
 
 const SignInScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailValid, setEmailValid] = useState(true);
-  const [passwordValid, setPasswordValid] = useState(true);
-
   const isLoading = useSelector(authSelector.isLoading);
   const dispatch = useDispatch();
-
-  const onChangeEmail = text => {
-    setEmail(text);
-    setEmailValid(true);
-  };
-
-  const onChangePassword = text => {
-    setPassword(text);
-    setPasswordValid(true);
-  };
 
   const onSubmit = async () => {
     dispatch(login(email, password));
@@ -44,14 +32,15 @@ const SignInScreen = ({ navigation }) => {
     navigation.navigate('SignUp');
   };
 
-  const validate = () => {
-    const emailValidation = email.match(/^[^\s@]+@[^\s@]+$/);
-    const passwordValidation = !!password.trim();
-    setEmailValid(emailValidation);
-    setPasswordValid(passwordValidation);
-
-    return emailValidation && passwordValidation;
-  };
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(validation),
+    mode: 'onSubmit',
+    reValidateMode: 'onChange'
+  });
 
   return (
     <ImageBackground
@@ -69,35 +58,66 @@ const SignInScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.inputsHolder}>
-          <TextInput
-            style={styles.textInput}
-            underlineColorAndroid={emailValid ? colors.white : colors.error}
-            placeholderTextColor={emailValid ? colors.white : colors.error}
-            placeholder='Email'
-            autoCompleteType='email'
-            keyboardType='email-address'
-            textContentType='emailAddress'
-            autoCapitalize='none'
-            onChangeText={onChangeEmail}
+          <Controller
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                testID={'email-input'}
+                style={[
+                  styles.textInput,
+                  errors.email && styles.invalidTextInput
+                ]}
+                underlineColorAndroid={'transparent'}
+                placeholderTextColor={
+                  !errors.email ? colors.white : colors.error
+                }
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                placeholder='Email'
+                autoCompleteType='email'
+                keyboardType='email-address'
+                textContentType='emailAddress'
+                autoCapitalize='none'
+              />
+            )}
+            name='email'
+            defaultValue=''
           />
 
-          <TextInput
-            style={styles.textInput}
-            underlineColorAndroid={passwordValid ? colors.white : colors.error}
-            placeholderTextColor={passwordValid ? colors.white : colors.error}
-            placeholder='Senha'
-            textContentType='password'
-            secureTextEntry
-            onChangeText={onChangePassword}
+          <Controller
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                testID={'password-input'}
+                underlineColorAndroid={'transparent'}
+                placeholderTextColor={
+                  !errors.password ? colors.white : colors.error
+                }
+                placeholder='Senha'
+                textContentType='password'
+                secureTextEntry
+                value={value}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                style={[
+                  styles.textInput,
+                  errors.password && styles.invalidTextInput
+                ]}
+              />
+            )}
+            name='password'
+            defaultValue=''
           />
         </View>
 
         <View style={styles.buttonsHolder}>
           <RoundButton
+            testID={'submit-button'}
             backgroundColor={colors.white}
             borderColor={colors.transparent}
             disabled={isLoading}
-            onPress={onSubmit}
+            onPress={handleSubmit(onSubmit)}
           >
             {isLoading ? (
               <ActivityIndicator size='large' color={colors.primary} />
