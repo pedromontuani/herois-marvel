@@ -18,6 +18,7 @@ import {
   getFavoritesListObservable,
   removeFavorite
 } from '~/services/favorites';
+import { setLoading } from '~/store/modules/loading/slice';
 
 const EnterprisesScreen = ({ navigation }) => {
   const user = useSelector(authSelector.getUser);
@@ -25,6 +26,7 @@ const EnterprisesScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const onPressCard = character => {
+    dispatch(setLoading(true));
     navigation.navigate(routes.CHARACTER_INFO, { characterId: character.id });
   };
 
