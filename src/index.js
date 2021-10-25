@@ -44,19 +44,16 @@ const App = () => {
     };
   }, []);
 
-  const getBarStyle = () => {
-    if (!isConnected && Platform.OS === 'ios') {
-      return 'dark-content';
-    }
-    return 'light-content';
-  };
-
   return (
     <Provider store={store}>
       <SafeAreaProvider>
         <StatusBar
           backgroundColor={colors.primaryDark}
-          barStyle={getBarStyle()}
+          barStyle={
+            !isConnected && Platform.OS === 'ios'
+              ? 'dark-content'
+              : 'light-content'
+          }
         />
         {isConnected ? <Router /> : <NoInternet />}
       </SafeAreaProvider>
