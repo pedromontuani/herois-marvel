@@ -24,7 +24,7 @@ const Router = () => {
         {!isAuthenticated ? (
           <Stack.Group>
             <Stack.Screen
-              name={routes.SIGN_UP}
+              name={routes.SIGN_IN}
               component={SignInScreen}
               options={{ headerShown: false }}
             />

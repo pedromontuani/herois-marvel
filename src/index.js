@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import NetInfo from '@react-native-community/netinfo';
@@ -44,12 +44,19 @@ const App = () => {
     };
   }, []);
 
+  const getBarStyle = () => {
+    if (!isConnected && Platform.OS === 'ios') {
+      return 'dark-content';
+    }
+    return 'light-content';
+  };
+
   return (
     <Provider store={store}>
       <SafeAreaProvider>
         <StatusBar
           backgroundColor={colors.primaryDark}
-          barStyle={isConnected ? 'light-content' : 'dark-content'}
+          barStyle={getBarStyle()}
         />
         {isConnected ? <Router /> : <NoInternet />}
       </SafeAreaProvider>

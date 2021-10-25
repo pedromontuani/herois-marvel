@@ -134,7 +134,7 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
   return isLoading || !isReady ? (
     <Loading />
   ) : (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView edges={['top']} style={styles.safeAreaView}>
       <View style={styles.container}>
         <LinearGradient colors={gradient} style={styles.customNavBar}>
           <TouchableOpacity

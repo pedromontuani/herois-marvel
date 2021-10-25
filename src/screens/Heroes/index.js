@@ -138,8 +138,8 @@ const EnterprisesScreen = ({ navigation }) => {
   }, [user]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Animated.View style={styles.container}>
+    <View style={styles.container}>
+      <SafeAreaView edges={['top']} style={styles.safeAreaView}>
         <MainHeader
           user={user}
           headerHeight={headerHeight}
@@ -148,31 +148,31 @@ const EnterprisesScreen = ({ navigation }) => {
           onSubmitSearch={getHeroes}
           onSignOut={signOut}
         />
-        <Animated.FlatList
-          refreshControl={
-            <RefreshControl
-              colors={[colors.primary]}
-              refreshing={loading && (scrollY < 20 || !heroes.length)}
-              onRefresh={getHeroes}
-            />
-          }
-          style={styles.container}
-          contentContainerStyle={styles.flatListContent}
-          data={heroes}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-          scrollEventThrottle={1}
-          onEndReached={() => getHeroes(lastOffset + perPage)}
-          onEndReachedThreshold={1}
-          ListEmptyComponent={showNoData}
-          ListFooterComponent={showIndicator}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-            { useNativeDriver: false }
-          )}
-        />
-      </Animated.View>
-    </SafeAreaView>
+      </SafeAreaView>
+      <Animated.FlatList
+        refreshControl={
+          <RefreshControl
+            colors={[colors.primary]}
+            refreshing={loading && (scrollY < 20 || !heroes.length)}
+            onRefresh={getHeroes}
+          />
+        }
+        style={styles.container}
+        contentContainerStyle={styles.flatListContent}
+        data={heroes}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        scrollEventThrottle={1}
+        onEndReached={() => getHeroes(lastOffset + perPage)}
+        onEndReachedThreshold={1}
+        ListEmptyComponent={showNoData}
+        ListFooterComponent={showIndicator}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+          { useNativeDriver: false }
+        )}
+      />
+    </View>
   );
 };
 

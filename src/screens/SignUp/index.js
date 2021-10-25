@@ -6,10 +6,12 @@ import {
   ImageBackground,
   Image,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  KeyboardAvoidingView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { launchImageLibrary } from 'react-native-image-picker';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useSelector, useDispatch } from 'react-redux';
 import authSelector from '~/store/modules/auth/selectors';
@@ -59,139 +61,150 @@ const SignUp = props => {
   });
 
   return (
-    <ImageBackground
-      style={styles.viewport}
-      source={require('~/assets/login-background/background.png')}
-      resizeMode={'cover'}
-    >
-      <TouchableOpacity onPress={selectAvatar} style={styles.avatarHolder}>
-        <Image
-          style={styles.avatar}
-          source={
-            avatar && avatar.uri
-              ? { uri: avatar.uri }
-              : require('~/assets/no-photo.png')
-          }
-          resizeMode={'cover'}
-        />
-        <Icon name='plus-circle' style={styles.avatarSelection} />
-      </TouchableOpacity>
-
-      <View style={styles.inputsHolder}>
-        <Controller
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              style={[styles.textInput, errors.name && styles.invalidTextInput]}
-              underlineColorAndroid={'transparent'}
-              placeholderTextColor={!errors.name ? colors.white : colors.error}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              placeholder='Nome'
-              autoCapitalize='words'
-            />
-          )}
-          name='name'
-          defaultValue=''
-        />
-
-        <Controller
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              style={[
-                styles.textInput,
-                errors.email && styles.invalidTextInput
-              ]}
-              underlineColorAndroid={'transparent'}
-              placeholderTextColor={!errors.email ? colors.white : colors.error}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              placeholder='Email'
-              autoCompleteType='email'
-              keyboardType='email-address'
-              textContentType='emailAddress'
-              autoCapitalize='none'
-            />
-          )}
-          name='email'
-          defaultValue=''
-        />
-
-        <Controller
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              style={[
-                styles.textInput,
-                errors.password && styles.invalidTextInput
-              ]}
-              underlineColorAndroid={'transparent'}
-              placeholderTextColor={
-                !errors.password ? colors.white : colors.error
+    <KeyboardAvoidingView behavior={'position'} style={{ flex: 1 }}>
+      <ImageBackground
+        style={styles.viewport}
+        source={require('~/assets/login-background/background.png')}
+        resizeMode={'cover'}
+      >
+        <SafeAreaView style={{ flex: 1 }}>
+          <TouchableOpacity onPress={selectAvatar} style={styles.avatarHolder}>
+            <Image
+              style={styles.avatar}
+              source={
+                avatar && avatar.uri
+                  ? { uri: avatar.uri }
+                  : require('~/assets/no-photo.png')
               }
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              placeholder='Senha'
-              secureTextEntry
+              resizeMode={'cover'}
             />
-          )}
-          name='password'
-          defaultValue=''
-        />
+            <Icon name='plus-circle' style={styles.avatarSelection} />
+          </TouchableOpacity>
 
-        <Controller
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              style={[
-                styles.textInput,
-                errors.confirmPassword && styles.invalidTextInput
-              ]}
-              underlineColorAndroid={'transparent'}
-              placeholderTextColor={
-                !errors.confirmPassword ? colors.white : colors.error
-              }
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              placeholder='Confirmar senha'
-              secureTextEntry
+          <View style={styles.inputsHolder}>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                  style={[
+                    styles.textInput,
+                    errors.name && styles.invalidTextInput
+                  ]}
+                  underlineColorAndroid={'transparent'}
+                  placeholderTextColor={
+                    !errors.name ? colors.white : colors.error
+                  }
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                  placeholder='Nome'
+                  autoCapitalize='words'
+                />
+              )}
+              name='name'
+              defaultValue=''
             />
-          )}
-          name='confirmPassword'
-          defaultValue=''
-        />
-      </View>
-      <View style={styles.buttonsHolder}>
-        <RoundButton
-          backgroundColor={colors.white}
-          borderColor={'transparent'}
-          onPress={handleSubmit(onSignUp)}
-        >
-          {isLoading ? (
-            <ActivityIndicator size={'large'} color={colors.primary} />
-          ) : (
-            <Text style={styles.textFullButton}>CADASTRE-SE</Text>
-          )}
-        </RoundButton>
-        <RoundButton
-          backgroundColor={'transparent'}
-          borderColor={'transparent'}
-          onPress={() => {
-            props.navigation.goBack();
-          }}
-        >
-          <Text style={styles.textOutlineButton}>
-            Já possui uma conta?
-            <Text style={{ fontWeight: 'bold' }}> Faça o login!</Text>
-          </Text>
-        </RoundButton>
-      </View>
-    </ImageBackground>
+
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                  style={[
+                    styles.textInput,
+                    errors.email && styles.invalidTextInput
+                  ]}
+                  underlineColorAndroid={'transparent'}
+                  placeholderTextColor={
+                    !errors.email ? colors.white : colors.error
+                  }
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                  placeholder='Email'
+                  autoCompleteType='email'
+                  keyboardType='email-address'
+                  textContentType='emailAddress'
+                  autoCapitalize='none'
+                />
+              )}
+              name='email'
+              defaultValue=''
+            />
+
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                  style={[
+                    styles.textInput,
+                    errors.password && styles.invalidTextInput
+                  ]}
+                  underlineColorAndroid={'transparent'}
+                  placeholderTextColor={
+                    !errors.password ? colors.white : colors.error
+                  }
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                  placeholder='Senha'
+                  secureTextEntry
+                />
+              )}
+              name='password'
+              defaultValue=''
+            />
+
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                  style={[
+                    styles.textInput,
+                    errors.confirmPassword && styles.invalidTextInput
+                  ]}
+                  underlineColorAndroid={'transparent'}
+                  placeholderTextColor={
+                    !errors.confirmPassword ? colors.white : colors.error
+                  }
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                  placeholder='Confirmar senha'
+                  secureTextEntry
+                />
+              )}
+              name='confirmPassword'
+              defaultValue=''
+            />
+          </View>
+          <View style={styles.buttonsHolder}>
+            <RoundButton
+              backgroundColor={colors.white}
+              borderColor={'transparent'}
+              onPress={handleSubmit(onSignUp)}
+            >
+              {isLoading ? (
+                <ActivityIndicator size={'large'} color={colors.primary} />
+              ) : (
+                <Text style={styles.textFullButton}>CADASTRE-SE</Text>
+              )}
+            </RoundButton>
+            <RoundButton
+              backgroundColor={'transparent'}
+              borderColor={'transparent'}
+              onPress={() => {
+                props.navigation.goBack();
+              }}
+            >
+              <Text style={styles.textOutlineButton}>
+                Já possui uma conta?
+                <Text style={{ fontWeight: 'bold' }}> Faça o login!</Text>
+              </Text>
+            </RoundButton>
+          </View>
+        </SafeAreaView>
+      </ImageBackground>
+    </KeyboardAvoidingView>
   );
 };
 

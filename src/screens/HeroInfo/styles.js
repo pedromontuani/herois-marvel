@@ -4,6 +4,10 @@ import colors from '~/theme/colors';
 export const gradient = ['rgba(0,0,0,0.6)', 'rgba(0,0,0,0)'];
 
 export default StyleSheet.create({
+  safeAreaView: {
+    flex: 1,
+    backgroundColor: colors.primary
+  },
   container: {
     flex: 1
   },
