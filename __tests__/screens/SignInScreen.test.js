@@ -14,13 +14,13 @@ import providersHoc from '../utils/providersHoc';
 
 describe('SignInScreen', () => {
   it('should render correctly', () => {
-    const screen = providersHoc(<SignInScreen />);
+    const screen = <SignInScreen />;
     const rendered = renderer.create(screen).toJSON();
     expect(rendered).toMatchSnapshot();
   });
 
   it('should not submit with wrong email and right password', async () => {
-    const screen = providersHoc(<SignInScreen />);
+    const screen = <SignInScreen />;
     const { getByTestId } = render(screen);
 
     const emailInput = getByTestId('email-input');
@@ -36,7 +36,7 @@ describe('SignInScreen', () => {
   });
 
   it('should not submit with right email and wrong password', async () => {
-    const screen = providersHoc(<SignInScreen />);
+    const screen = <SignInScreen />;
     const { getByTestId } = render(screen);
 
     const emailInput = getByTestId('email-input');
@@ -50,7 +50,7 @@ describe('SignInScreen', () => {
   });
 
   it('should submit with right email and password', async () => {
-    const screen = providersHoc(<SignInScreen />);
+    const screen = <SignInScreen />;
     const { getByTestId } = render(screen);
 
     const emailInput = getByTestId('email-input');
