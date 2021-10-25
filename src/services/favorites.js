@@ -9,7 +9,6 @@ export const getFavoritesListObservable = uid => {
 };
 
 export const addFavorite = async ({ uid, characterId, name, imageUrl }) => {
-  console.log({ uid, characterId, name, imageUrl });
   return firestore()
     .collection('users')
     .doc(uid)
