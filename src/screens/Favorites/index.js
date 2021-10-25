@@ -43,7 +43,7 @@ const EnterprisesScreen = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <Card
-      imageUrl={item.imageUrl}
+      imageUrl={item.imageUrl?.replace('http://', 'https://')}
       title={item.name}
       favorite
       onPress={() => onPressCard(item)}
@@ -71,7 +71,7 @@ const EnterprisesScreen = ({ navigation }) => {
   }, [user]);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView edges={['top']} style={styles.safeAreaView}>
       <View style={styles.container}>
         <FlatList
           style={styles.container}

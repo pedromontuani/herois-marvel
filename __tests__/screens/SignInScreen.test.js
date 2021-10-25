@@ -9,7 +9,7 @@ import {
   wrongPassword
 } from '../__mocks__/screens/SignInScreen.mock';
 import { mockDispatch } from '../__mocks__/libs/ReactRedux.mock';
-import SignInScreen from '~/screens/SignInScreen';
+import SignInScreen from '~/screens/SignIn';
 import providersHoc from '../utils/providersHoc';
 
 describe('SignInScreen', () => {

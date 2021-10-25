@@ -19,6 +19,13 @@ export default StyleSheet.create({
     width: '100%',
     padding: 10,
     elevation: 3,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
     zIndex: 100,
     flexDirection: 'row',
     alignItems: 'center',
@@ -77,7 +84,14 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: colors.lightGray,
-    elevation: 5
+    elevation: 5,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84
   },
   socialIconContainer: {
     padding: 10

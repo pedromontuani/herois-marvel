@@ -14,6 +14,13 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 6,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
     zIndex: 50
   },
   icon: {

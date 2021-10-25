@@ -8,6 +8,13 @@ export default StyleSheet.create({
     marginBottom: 20,
     backgroundColor: colors.white,
     elevation: 2,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
     borderRadius: 10
   },
   image: {
@@ -31,6 +38,13 @@ export default StyleSheet.create({
     fontSize: 30,
     zIndex: 100,
     elevation: 2,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
     color: colors.primary
   },
   title: { fontSize: 20, fontWeight: 'bold', paddingBottom: 5 },
