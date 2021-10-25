@@ -9,15 +9,15 @@ export default StyleSheet.create({
     borderRadius: 30,
     height: 60,
     width: 60,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.secondary,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 6,
-    zIndex: 50,
+    zIndex: 50
   },
   icon: {
     fontSize: 28,
-    color: 'white',
-  },
+    color: colors.white
+  }
 });

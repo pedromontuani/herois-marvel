@@ -4,9 +4,9 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from './styles';
 
-const FloatingActionButton = ({ onPress }) => (
+const FloatingActionButton = ({ onPress, icon = 'plus' }) => (
   <TouchableOpacity style={styles.container} onPress={onPress}>
-    <Icon name="filter-list" style={styles.icon} />
+    <Icon name={icon} style={styles.icon} />
   </TouchableOpacity>
 );
 

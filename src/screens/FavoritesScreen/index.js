@@ -1,14 +1,10 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
-import {
-  Animated,
-  Easing,
-  RefreshControl,
-  ActivityIndicator
-} from 'react-native';
+import { View, FlatList, Share } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import loadingSelector from '~/store/modules/loading/selectors';
+import FAB from '~/components/FloatingActionButton';
 
 import Card from '~/components/Card';
 import NoData from '~/components/NoData';
@@ -38,6 +34,15 @@ const EnterprisesScreen = ({ navigation }) => {
 
   const onPressFavorite = async ({ id }) => {
     await removeFavorite({ uid: user?.uid, characterId: id });
+  };
+
+  const onPressShare = async () => {
+    const favList = favorites
+      .map((fav, index) => `${index + 1} - ${fav.name}`)
+      .join('\n');
+    const message = `Ei! Olhe só minha lista de heróis da Marvel favoritos :)\n\n${favList}`;
+
+    Share.share({ message });
   };
 
   const renderItem = ({ item }) => (
@@ -71,8 +76,8 @@ const EnterprisesScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Animated.View style={styles.container}>
-        <Animated.FlatList
+      <View style={styles.container}>
+        <FlatList
           style={styles.container}
           contentContainerStyle={styles.flatListContent}
           data={favorites}
@@ -81,7 +86,8 @@ const EnterprisesScreen = ({ navigation }) => {
           scrollEventThrottle={1}
           ListEmptyComponent={showNoData}
         />
-      </Animated.View>
+        {favorites.length > 0 && <FAB onPress={onPressShare} icon='share' />}
+      </View>
     </SafeAreaView>
   );
 };
