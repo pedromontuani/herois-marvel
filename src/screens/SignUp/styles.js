@@ -49,6 +49,7 @@ export default StyleSheet.create({
     width: '100%',
     color: colors.white,
     borderBottomColor: colors.white,
+    paddingBottom: 20,
     borderBottomWidth: 1
   },
   invalidTextInput: {
@@ -58,7 +59,7 @@ export default StyleSheet.create({
     flex: 0.2,
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    paddingTop: 20
+    paddingTop: 30
   },
   textFullButton: {
     fontWeight: 'bold',

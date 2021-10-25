@@ -16,14 +16,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import loadingSelector from '~/store/modules/loading/selectors';
 import heroesSelector from '~/store/modules/heroes/selectors';
 import authSelector from '~/store/modules/auth/selectors';
-import {
-  addFavorite as sAddFavorite,
-  removeFavorite as sRemoveFavorite
-} from '~/store/modules/heroes/slice';
+import { setFavorites } from '~/store/modules/heroes/slice';
 
 import Loading from '~/components/Loading';
 
-import { addFavorite, removeFavorite } from '~/services/favorites';
+import {
+  addFavorite,
+  removeFavorite,
+  getFavoritesListObservable
+} from '~/services/favorites';
 
 import styles, { gradient } from './styles';
 import variables from '~/theme/variables';
@@ -50,7 +51,6 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
   const onPressLike = async () => {
     if (isFavorite()) {
       await removeFavorite({ uid: user.uid, characterId: characterData.id });
-      dispatch(sRemoveFavorite(characterData));
     } else {
       const char = {
         name: characterData.name,
@@ -63,7 +63,6 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
         characterId: char.id,
         imageUrl: char.imageUrl
       });
-      dispatch(sAddFavorite(char));
     }
   };
 
@@ -131,7 +130,21 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     fetchCharacterData();
-  }, []);
+    const unsubscribe = getFavoritesListObservable(user?.uid).onSnapshot(
+      docs => {
+        const list = [];
+        docs.forEach(doc => {
+          const { name, imageUrl } = doc.data();
+          list.push({ id: doc.id, name, imageUrl });
+        });
+        dispatch(setFavorites(list));
+      }
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, [user]);
 
   return isLoading ? (
     <Loading />
