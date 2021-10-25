@@ -53,7 +53,6 @@ const EnterprisesScreen = ({ navigation }) => {
   });
 
   const getHeroes = (offset = 0) => {
-    console.log('chamou', offset);
     findHeroesByQuery({
       name: searchTerm,
       offset
@@ -135,10 +134,6 @@ const EnterprisesScreen = ({ navigation }) => {
       unsubscribe();
     };
   }, [user]);
-
-  useEffect(() => {
-    console.log('heroes', heroes.length);
-  }, [heroes]);
 
   return (
     <SafeAreaView style={styles.container}>

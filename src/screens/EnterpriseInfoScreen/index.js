@@ -11,9 +11,18 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import loadingSelector from '~/store/modules/loading/selectors';
+import heroesSelector from '~/store/modules/heroes/selectors';
+import authSelector from '~/store/modules/auth/selectors';
 import Loading from '~/components/Loading';
+
+import { addFavorite, removeFavorite } from '~/services/favorites';
+
+import {
+  addFavorite as sAddFavorite,
+  removeFavorite as sRemoveFavorite
+} from '~/store/modules/heroes/slice';
 
 import styles, { gradient } from './styles';
 
@@ -26,14 +35,33 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
   const [urls, setUrls] = useState([]);
   const [comics, setComics] = useState([]);
   const [isReady, setIsReady] = useState(false);
-  const isLoading = useSelector(loadingSelector.isVisible);
   const { characterId } = route.params;
+  const isLoading = useSelector(loadingSelector.isVisible);
+  const favorites = useSelector(heroesSelector.favorites);
+  const user = useSelector(authSelector.getUser);
+  const dispatch = useDispatch();
 
   const getCharacterPhoto = () =>
     `${characterData.thumbnail.path}/landscape_amazing.${characterData.thumbnail.extension}`;
 
-  const onPressLike = () => {
-    console.log('cilcou');
+  const onPressLike = async () => {
+    if (isFavorite()) {
+      await removeFavorite({ uid: user.uid, characterId: characterData.id });
+      dispatch(sRemoveFavorite(characterData));
+    } else {
+      const char = {
+        name: characterData.name,
+        id: characterData.id,
+        imageUrl: getCharacterPhoto()
+      };
+      await addFavorite({
+        uid: user.uid,
+        name: char.name,
+        characterId: char.id,
+        imageUrl: char.imageUrl
+      });
+      dispatch(sAddFavorite(char));
+    }
   };
 
   const openUrl = ({ url }) => Linking.openURL(url);
@@ -54,6 +82,8 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
   const getComicImageUrl = comic =>
     `${comic.thumbnail.path}/portrait_medium.${comic.thumbnail.extension}`;
 
+  const isFavorite = () => !!favorites.find(fav => fav.id === characterData.id);
+
   const renderItem = ({ item }) => (
     <View style={{ flexDirection: 'column', paddingRight: 20, width: 135 }}>
       <TouchableOpacity onPress={() => item.url && openUrl(item)}>
@@ -72,7 +102,11 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
   const fetchCharacterData = async () => {
     try {
       await getById(characterId).then(({ data }) => {
-        setCharacterData(data.data.results[0]);
+        const char = {
+          ...data.data.results[0],
+          id: data.data.results[0].id.toString()
+        };
+        setCharacterData(char);
         const links = data.data.results[0].urls.filter(url => {
           return ['detail', 'wiki', 'comiclink'].includes(url.type);
         });
@@ -80,7 +114,7 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
       });
       await findByCharacterId(characterId).then(({ data }) => {
         const comicsData = data.data.results.map(comic => ({
-          id: comic.id,
+          id: comic.id.toString(),
           title: comic.title,
           imageUrl: getComicImageUrl(comic),
           url: comic.urls.find(({ type }) => type === 'detail')?.url
@@ -114,7 +148,7 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
           >
             <Icon
               style={styles.navIcon}
-              name={characterData.liked ? 'star' : 'star-outline'}
+              name={isFavorite() ? 'star' : 'star-outline'}
             />
           </TouchableOpacity>
         </LinearGradient>
@@ -143,7 +177,7 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
                   contentContainerStyle={{ paddingBottom: 5 }}
                   data={comics}
                   renderItem={renderItem}
-                  keyExtractor={item => item.id.toString()}
+                  keyExtractor={item => item.id}
                 />
               </View>
             )}
