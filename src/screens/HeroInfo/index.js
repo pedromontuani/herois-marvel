@@ -33,7 +33,7 @@ import { getById } from '~/api/heroes';
 import { findByCharacterId } from '~/api/comics';
 import { setLoading } from '~/store/modules/loading/slice';
 
-const EnterpriseInfoScreen = ({ navigation, route }) => {
+const HeroInfoScreen = ({ navigation, route }) => {
   const [characterData, setCharacterData] = useState({});
   const [urls, setUrls] = useState([]);
   const [comics, setComics] = useState([]);
@@ -220,4 +220,4 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
   );
 };
 
-export default EnterpriseInfoScreen;
+export default HeroInfoScreen;

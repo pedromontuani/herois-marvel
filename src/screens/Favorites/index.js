@@ -20,7 +20,7 @@ import {
 } from '~/services/favorites';
 import { setLoading } from '~/store/modules/loading/slice';
 
-const EnterprisesScreen = ({ navigation }) => {
+const FavoritesScreen = ({ navigation }) => {
   const user = useSelector(authSelector.getUser);
   const favorites = useSelector(heroesSelector.favorites);
   const dispatch = useDispatch();
@@ -90,4 +90,4 @@ const EnterprisesScreen = ({ navigation }) => {
   );
 };
 
-export default EnterprisesScreen;
+export default FavoritesScreen;

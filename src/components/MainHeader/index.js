@@ -10,14 +10,12 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { BASE_URL } from '~/config/index';
 
 import styles from './styles';
 
 const MainHeader = ({
   headerHeight,
   user,
-  filterLabel,
   searchTerm,
   setSearchTerm,
   onSubmitSearch,

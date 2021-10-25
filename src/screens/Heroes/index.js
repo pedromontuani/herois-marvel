@@ -36,7 +36,7 @@ import {
 } from '~/services/favorites';
 import { setLoading } from '~/store/modules/loading/slice';
 
-const EnterprisesScreen = ({ navigation }) => {
+const HeroesScreen = ({ navigation }) => {
   const [searchTerm, setSearchTerm] = useState(undefined);
   const [lastOffset, setLastOffset] = useState(0);
   const perPage = 20;
@@ -154,7 +154,7 @@ const EnterprisesScreen = ({ navigation }) => {
           headerHeight={headerHeight}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
-          onSubmitSearch={getHeroes}
+          onSubmitSearch={() => getHeroes()}
           onSignOut={signOut}
         />
       </SafeAreaView>
@@ -185,4 +185,4 @@ const EnterprisesScreen = ({ navigation }) => {
   );
 };
 
-export default EnterprisesScreen;
+export default HeroesScreen;
