@@ -58,8 +58,9 @@ const EnterprisesScreen = ({ navigation }) => {
       offset
     }).then(({ data }) => {
       data.data.results = data.data.results.map(res => ({
-        ...res,
-        id: res.id.toString()
+        id: res.id.toString(),
+        name: res.name,
+        thumbnail: res.thumbnail
       }));
       if (offset) {
         dispatch(setHeroesOffset(data.data.results));
