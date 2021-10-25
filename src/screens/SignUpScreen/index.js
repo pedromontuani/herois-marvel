@@ -28,11 +28,6 @@ import { createUser } from '~/services/auth';
 
 const SignUp = props => {
   const [avatar, setAvatar] = useState(undefined);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [verifyPassword, setVerifyPassword] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const isLoading = useSelector(authSelector.isLoading);
   const dispatch = useDispatch();
@@ -51,7 +46,7 @@ const SignUp = props => {
     });
   };
 
-  const onSignUp = () => {
+  const onSignUp = ({ name, email, password }) => {
     dispatch(signUp({ name, email, password, photo: avatar }));
   };
 

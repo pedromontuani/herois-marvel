@@ -24,7 +24,7 @@ const SignInScreen = ({ navigation }) => {
   const isLoading = useSelector(authSelector.isLoading);
   const dispatch = useDispatch();
 
-  const onSubmit = async () => {
+  const onSubmit = async ({ email, password }) => {
     dispatch(login(email, password));
   };
 
