@@ -3,6 +3,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import Loading from '~/components/Loading/';
+
 import HomeTabs from './HomeTabs';
 import HeroInfoScreen from '~/screens/HeroInfo';
 import SignInScreen from '~/screens/SignIn';
@@ -17,8 +19,11 @@ const Stack = createStackNavigator();
 
 const Router = () => {
   const isAuthenticated = useSelector(authSelector.isAuthenticated);
+  const authLoading = useSelector(authSelector.offlineLoading);
 
-  return (
+  return authLoading ? (
+    <Loading />
+  ) : (
     <NavigationContainer>
       <Stack.Navigator>
         {!isAuthenticated ? (

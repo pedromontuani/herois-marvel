@@ -8,7 +8,6 @@ import {
   ActivityIndicator
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import RoundButton from '~/components/RoundButton';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -20,6 +19,7 @@ import validation from './validation';
 import colors from '~/theme/colors';
 import styles from './styles';
 import routes from '~/router/routes';
+import RoundButton from '~/components/RoundButton';
 
 const SignInScreen = ({ navigation }) => {
   const isLoading = useSelector(authSelector.isLoading);

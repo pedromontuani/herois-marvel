@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { API_URL } from '~/config';
-import { setLoading } from '~/store/modules/loading/slice';
 import { stringMd5 } from 'react-native-quick-md5';
 import store from '~/store';
 
@@ -11,8 +10,6 @@ export default () => {
   const instance = axios.create({
     baseURL: API_URL
   });
-
-  store.dispatch(setLoading(true));
 
   const ts = Date.now();
   const hash = stringMd5(`${ts}${API_PRIVATE_KEY}${API_PUBLIC_KEY}`);
@@ -28,18 +25,15 @@ export default () => {
       }
     }),
     error => {
-      store.dispatch(setLoading(false));
       return Promise.reject(error);
     }
   );
 
   instance.interceptors.response.use(
     response => {
-      store.dispatch(setLoading(false));
       return response;
     },
     error => {
-      store.dispatch(setLoading(false));
       return Promise.reject(error);
     }
   );

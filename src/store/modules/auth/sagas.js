@@ -1,11 +1,16 @@
 import { call, put, all, takeLatest } from 'redux-saga/effects';
 import Toast from 'react-native-simple-toast';
-import { loginSuccess, logoutSuccess, setLoading } from './slice';
+import {
+  loginSuccess,
+  logoutSuccess,
+  setLoading,
+  setOfflineLoading
+} from './slice';
 import ActionTypes from '~/store/actionTypes';
 import { createUser, isAuthenticated, signIn, signOut } from '~/services/auth';
 
 function* offlineLogin() {
-  yield put(setLoading(true));
+  yield put(setOfflineLoading(true));
   try {
     const user = yield call(isAuthenticated);
     if (!!user) {
@@ -16,9 +21,8 @@ function* offlineLogin() {
       Toast.show,
       'Ocorreu um erro. Por favor, verifique sua conexão.'
     );
-  } finally {
-    yield put(setLoading(false));
   }
+  yield put(setOfflineLoading(false));
 }
 
 function* login({ payload }) {

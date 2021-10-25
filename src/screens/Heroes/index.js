@@ -34,6 +34,7 @@ import {
   removeFavorite,
   getFavoritesListObservable
 } from '~/services/favorites';
+import { setLoading } from '~/store/modules/loading/slice';
 
 const EnterprisesScreen = ({ navigation }) => {
   const [searchTerm, setSearchTerm] = useState(undefined);
@@ -54,25 +55,31 @@ const EnterprisesScreen = ({ navigation }) => {
   });
 
   const getHeroes = (offset = 0) => {
+    dispatch(setLoading(true));
     findHeroesByQuery({
       name: searchTerm,
       offset
-    }).then(({ data }) => {
-      data.data.results = data.data.results.map(res => ({
-        id: res.id.toString(),
-        name: res.name,
-        thumbnail: res.thumbnail
-      }));
-      if (offset) {
-        dispatch(setHeroesOffset(data.data.results));
-      } else {
-        dispatch(setHeroes(data.data.results));
-      }
-      setLastOffset(data.data.offset);
-    });
+    })
+      .then(({ data }) => {
+        data.data.results = data.data.results.map(res => ({
+          id: res.id.toString(),
+          name: res.name,
+          thumbnail: res.thumbnail
+        }));
+        if (offset) {
+          dispatch(setHeroesOffset(data.data.results));
+        } else {
+          dispatch(setHeroes(data.data.results));
+        }
+        setLastOffset(data.data.offset);
+      })
+      .finally(() => {
+        dispatch(setLoading(false));
+      });
   };
 
   const onPressCard = character => {
+    dispatch(setLoading(true));
     navigation.navigate(routes.CHARACTER_INFO, { characterId: character.id });
   };
 

@@ -30,12 +30,12 @@ import variables from '~/theme/variables';
 
 import { getById } from '~/api/heroes';
 import { findByCharacterId } from '~/api/comics';
+import { setLoading } from '~/store/modules/loading/slice';
 
 const EnterpriseInfoScreen = ({ navigation, route }) => {
   const [characterData, setCharacterData] = useState({});
   const [urls, setUrls] = useState([]);
   const [comics, setComics] = useState([]);
-  const [isReady, setIsReady] = useState(false);
   const { characterId } = route.params;
   const isLoading = useSelector(loadingSelector.isVisible);
   const favorites = useSelector(heroesSelector.favorites);
@@ -43,7 +43,7 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
   const getCharacterPhoto = () =>
-    `${characterData.thumbnail.path}/landscape_amazing.${characterData.thumbnail.extension}`;
+    `${characterData?.thumbnail?.path}/landscape_amazing.${characterData?.thumbnail?.extension}`;
 
   const onPressLike = async () => {
     if (isFavorite()) {
@@ -123,7 +123,7 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
         setComics(comicsData);
       });
     } finally {
-      setIsReady(true);
+      dispatch(setLoading(false));
     }
   };
 
@@ -131,7 +131,7 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
     fetchCharacterData();
   }, []);
 
-  return isLoading || !isReady ? (
+  return isLoading ? (
     <Loading />
   ) : (
     <SafeAreaView edges={['top']} style={styles.safeAreaView}>

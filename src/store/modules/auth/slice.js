@@ -6,11 +6,15 @@ const authSlice = createSlice({
   initialState: {
     user: null,
     isAuthenticated: null,
-    isLoading: null
+    isLoading: null,
+    offlineLoading: true
   },
   reducers: {
     setLoading(state, { payload }) {
       state.isLoading = payload;
+    },
+    setOfflineLoading(state, { payload }) {
+      state.offlineLoading = payload;
     },
     loginSuccess(state, { payload }) {
       const { user } = payload;
@@ -52,6 +56,7 @@ export const logout = () => ({
 
 const { actions, reducer } = authSlice;
 
-export const { setLoading, loginSuccess, logoutSuccess } = actions;
+export const { setLoading, loginSuccess, logoutSuccess, setOfflineLoading } =
+  actions;
 
 export default reducer;
