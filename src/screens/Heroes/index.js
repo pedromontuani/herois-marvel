@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Animated,
   Easing,
@@ -45,6 +45,7 @@ const HeroesScreen = ({ navigation }) => {
   const heroes = useSelector(heroesSelector.allHeroes);
   const favorites = useSelector(heroesSelector.favorites);
   const scrollY = new Animated.Value(0);
+  const flatlist = useRef(null);
   const dispatch = useDispatch();
 
   const headerHeight = scrollY.interpolate({
@@ -56,6 +57,9 @@ const HeroesScreen = ({ navigation }) => {
 
   const getHeroes = (offset = 0) => {
     dispatch(setLoading(true));
+    if (offset) {
+      flatlist.current?.scrollToIndex({ index: 0 });
+    }
     findHeroesByQuery({
       name: searchTerm,
       offset
@@ -159,6 +163,7 @@ const HeroesScreen = ({ navigation }) => {
         />
       </SafeAreaView>
       <Animated.FlatList
+        ref={flatlist}
         refreshControl={
           <RefreshControl
             colors={[colors.primary]}
