@@ -37,7 +37,7 @@ function* login({ payload }) {
     yield put(loginSuccess({ user }));
   } catch (e) {
     console.log(e);
-    yield call(Toast.show, 'Ocorreu um erro. Por favor, tente novamente.');
+    yield call(Toast.show, 'Email ou senha incorretos.');
   }
   yield put(setLoading(false));
 }
