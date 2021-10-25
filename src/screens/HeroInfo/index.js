@@ -81,8 +81,10 @@ const EnterpriseInfoScreen = ({ navigation, route }) => {
     }
   };
 
-  const getComicImageUrl = comic =>
-    `${comic.thumbnail.path}/portrait_medium.${comic.thumbnail.extension}`;
+  const getComicImageUrl = comic => {
+    const path = comic?.thumbnail?.path.replace('http://', 'https://');
+    return `${path}/portrait_medium.${comic.thumbnail.extension}`;
+  };
 
   const isFavorite = () => !!favorites.find(fav => fav.id === characterData.id);
 
